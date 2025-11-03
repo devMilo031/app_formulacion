@@ -1,0 +1,38 @@
+Instrucciones para ejecutar la aplicación AutoGestion
+
+Requisitos previos:
+- Python 3.7 o superior instalado
+- Pip instalado
+
+Paso 1: Instalar dependencias
+Ejecuta el siguiente comando en la terminal desde la carpeta del proyecto:
+pip install -r requirements.txt
+
+Esto instalará Flask y reportlab.
+
+Paso 2: Ejecutar la aplicación
+Opción 1: Usando Python directamente
+python app.py
+
+Opción 2: Usando el script de Windows (start.bat)
+Doble clic en start.bat o ejecuta en CMD/PowerShell:
+start.bat
+
+Opción 3: Usando el script de PowerShell (start.ps1)
+Ejecuta en PowerShell:
+.\start.ps1
+
+La aplicación se ejecutará en modo debug y estará disponible en:
+http://127.0.0.1:5000
+
+Paso 3: Acceder a la aplicación
+Abre un navegador web y ve a la URL anterior.
+- Usuario: admin
+- Contraseña: admin123
+
+Paso 4: Detener la aplicación
+Presiona Ctrl+C en la terminal donde se está ejecutando.
+
+Notas:
+- La aplicación usa datos mock (de ejemplo), no una base de datos real.
+- En producción, cambia la SECRET_KEY y las credenciales por defecto.

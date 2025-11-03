@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="actions-bar">
+  <h1 style="margin:0">Clientes</h1>
+  <div class="actions">
+    <a href="/clientes/nuevo" class="btn small">+ Nuevo Cliente</a>
+  </div>
+  </div>
+
+<div class="grid grid-3" style="margin-bottom:16px;">
+  <div class="card kpi"><div>
+    <div>Total Clientes</div>
+  </div><div class="value">{{ totals.total }}</div></div>
+  <div class="card kpi"><div>
+    <div>Clientes Activos</div>
+  </div><div class="value">{{ totals.active }}</div></div>
+  <div class="card kpi"><div>
+    <div>Vehículos Registrados</div>
+  </div><div class="value">{{ totals.vehicles }}</div></div>
+</div>
+
+<div class="card">
+  <div style="margin-bottom:10px"><input class="search" placeholder="Buscar por nombre, email o teléfono..."></div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th><th>Contacto</th><th>Vehículos</th><th>Órdenes Totales</th><th>Última Vista</th><th>Estado</th><th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in clients %}
+      <tr>
+        <td>{{ c.name }}</td>
+        <td>
+          {{ c.email }}<br/>
+          {{ c.phone }}
+        </td>
+        <td>{{ c.vehicles }}</td>
+        <td>{{ c.orders }}</td>
+        <td>{{ c.last }}</td>
+        <td>
+          {% if c.state == 'Activo' %}
+          <span class="badge b-green">Activo</span>
+          {% else %}
+          <span class="badge b-gray">Inactivo</span>
+          {% endif %}
+        </td>
+        <td class="actions"><a class="btn" href="/clientes/{{ c.slug }}">Ver Detalles</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+{% endblock %}
+
+

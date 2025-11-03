@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card" style="max-width:420px;margin:48px auto;">
+  <h2 style="margin-top:0">Iniciar sesión</h2>
+  <form method="post" action="{{ url_for('login', next=request.args.get('next')) }}">
+    <div class="form-row">
+      <label>Usuario</label>
+      <input name="username" placeholder="admin" required>
+    </div>
+    <div class="form-row">
+      <label>Contraseña</label>
+      <input type="password" name="password" placeholder="admin123" required>
+    </div>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <a href="/" class="btn outline">Cancelar</a>
+      <button class="btn" type="submit">Entrar</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

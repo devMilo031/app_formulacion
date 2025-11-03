@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="actions-bar">
+  <h1 style="margin:0">Nueva Orden de Reparación</h1>
+</div>
+
+<div class="card">
+  <form method="POST">
+    <div class="form-group">
+      <label>Cliente</label>
+      <input type="text" name="client" required placeholder="Nombre del cliente">
+    </div>
+    <div class="form-group">
+      <label>Vehículo</label>
+      <input type="text" name="vehicle" required placeholder="Ej: Toyota Corolla - ABC-123">
+    </div>
+    <div class="form-group">
+      <label>Técnico Asignado</label>
+      <select name="tech">
+        <option value="Carlos Ruiz">Carlos Ruiz</option>
+        <option value="Ana López">Ana López</option>
+        <option value="Miguel Ángel">Miguel Ángel</option>
+        <option value="Sin asignar">Sin asignar</option>
+      </select>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn">Crear Orden</button>
+      <a href="/ordenes" class="btn outline">Cancelar</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
+

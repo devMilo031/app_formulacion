@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card" style="max-width:900px;margin:16px auto;">
+  <h2 style="margin-top:0">Cliente: {{ client.name }}</h2>
+  <div class="grid grid-2">
+    <div>
+      <div><b>Email:</b> {{ client.email }}</div>
+      <div><b>Teléfono:</b> {{ client.phone }}</div>
+      <div><b>Vehículos:</b> {{ client.vehicles }}</div>
+    </div>
+    <div>
+      <div><b>Órdenes Totales:</b> {{ client.orders }}</div>
+      <div><b>Última Vista:</b> {{ client.last }}</div>
+      <div><b>Estado:</b> {{ client.state }}</div>
+    </div>
+  </div>
+  <div style="margin-top:12px">
+    <a class="btn" href="{{ url_for('clientes') }}">Volver</a>
+  </div>
+</div>
+{% endblock %}

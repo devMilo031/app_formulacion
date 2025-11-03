@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card" style="max-width:900px;margin:16px auto;">
+  <h2 style="margin-top:0">Editar Producto {{ item.code }}</h2>
+  <form>
+    <div class="grid grid-2">
+      <div class="form-row">
+        <label>Producto</label>
+        <input value="{{ item.product }}">
+      </div>
+      <div class="form-row">
+        <label>Categoría</label>
+        <input value="{{ item.category }}">
+      </div>
+      <div class="form-row">
+        <label>Marca</label>
+        <input value="{{ item.brand }}">
+      </div>
+      <div class="form-row">
+        <label>Cantidad</label>
+        <input type="number" value="{{ item.qty }}">
+      </div>
+      <div class="form-row">
+        <label>Stock Min/Max</label>
+        <input value="{{ item.minmax }}">
+      </div>
+      <div class="form-row">
+        <label>Precio</label>
+        <input value="{{ item.price }}">
+      </div>
+      <div class="form-row">
+        <label>Ubicación</label>
+        <input value="{{ item.loc }}">
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <a class="btn outline" href="{{ url_for('inventario') }}">Cancelar</a>
+      <button class="btn" type="button">Guardar (demo)</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

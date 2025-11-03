@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="actions-bar">
+  <h1 style="margin:0">Agenda / Calendario de Citas</h1>
+  <div class="actions">
+    <a href="/nueva-cita" class="btn small">+ Nueva Cita</a>
+  </div>
+  </div>
+
+<div class="card">
+  <div class="subtle" style="margin-bottom:8px">Semana del 6 - 11 de Octubre, 2025</div>
+  <div class="calendar">
+    <div class="cal-grid">
+      <div class="col">
+        <div class="slot"><span>8:00</span></div>
+        <div class="slot"><span>9:00</span></div>
+        <div class="slot"><span>10:00</span></div>
+        <div class="slot"><span>11:00</span></div>
+      </div>
+      <div class="day">
+        <div class="event" style="top:56px;">María González — Cambio de aceite</div>
+      </div>
+      <div class="day">
+        <div class="event" style="top:112px;">Pedro Martínez — Revisión general</div>
+      </div>
+      <div class="day">
+        <div class="event" style="top:84px;">Laura Sánchez — Alineación</div>
+      </div>
+      <div class="day">
+        <div class="event" style="top:56px;">Carmen Vargas — Diagnóstico</div>
+      </div>
+      <div class="day"></div>
+      <div class="day"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+

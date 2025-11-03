@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="actions-bar">
+  <h1 style="margin:0">Órdenes de Reparación</h1>
+  <div class="actions">
+    <a href="/nueva-orden" class="btn small">+ Nueva Orden</a>
+  </div>
+  </div>
+<div class="card">
+  <div style="margin-bottom:10px"><input class="search" placeholder="Buscar por orden, cliente o vehículo..."></div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>N° de Orden</th><th>Cliente</th><th>Vehículo</th><th>Técnico</th><th>Fecha</th><th>Estado</th><th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for o in orders %}
+      <tr>
+        <td>{{ o.code }}</td>
+        <td>{{ o.client }}</td>
+        <td>{{ o.vehicle }}</td>
+        <td>{{ o.tech }}</td>
+        <td>{{ o.date }}</td>
+        <td>
+          {% set s = o.status %}
+          <span class="badge {% if 'Diagnóstico' in s %}b-blue{% elif 'Progreso' in s %}b-orange{% elif 'Esperando' in s %}b-orange{% elif 'Aprobación' in s %}b-orange{% else %}b-gray{% endif %}">{{ s }}</span>
+        </td>
+        <td class="actions"><a class="btn" href="/ordenes/{{ o.code }}">Ver Detalles</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+
+

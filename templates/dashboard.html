@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="actions-bar">
+  <h1 style="margin:0">Dashboard</h1>
+  <div class="actions">
+    <a href="/ordenes/nueva" class="btn small">+ Nueva Orden de Reparación</a>
+    <a href="/citas/nueva" class="btn small outline">Agendar Cita</a>
+  </div>
+  </div>
+<div class="grid grid-3" style="margin-bottom:16px;">
+  <div class="card kpi"><div>
+    <div>Vehículos en el Taller Hoy</div>
+    <div class="subtle">+2 desde ayer</div>
+  </div><div class="value">{{ metrics.vehicles_today }}</div></div>
+  <div class="card kpi"><div>
+    <div>Ingresos del Día</div>
+    <div class="subtle">3 órdenes completadas</div>
+  </div><div class="value">{{ metrics.day_income }}</div></div>
+  <div class="card kpi"><div>
+    <div>Órdenes Pendientes de Aprobación</div>
+    <div class="subtle">Requieren atención</div>
+  </div><div class="value">{{ metrics.pending_approval }}</div></div>
+</div>
+
+<div class="card">
+  <h3 style="margin:0 0 12px">Órdenes de Reparación Activas</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>N° de Orden</th><th>Cliente</th><th>Vehículo (Placa)</th><th>Técnico Asignado</th><th>Estado</th><th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for o in orders %}
+      <tr>
+        <td>{{ o.code }}</td>
+        <td>{{ o.client }}</td>
+        <td>{{ o.vehicle }}</td>
+        <td>{{ o.tech }}</td>
+        <td>
+          {% set s = o.status %}
+          <span class="badge {% if 'Diagnóstico' in s %}b-blue{% elif 'Progreso' in s %}b-orange{% elif 'Esperando' in s %}b-orange{% elif 'Aprobación' in s %}b-orange{% else %}b-gray{% endif %}">{{ s }}</span>
+        </td>
+        <td class="actions"><a class="btn" href="/ordenes/{{ o.code }}">Ver Detalles</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+
+

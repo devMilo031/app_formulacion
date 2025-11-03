@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AutoGestion</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">AutoGestion</div>
+      <nav>
+        <a href="/" class="nav-item {% if request.path=='/' %}active{% endif %}">Dashboard</a>
+        <a href="/agenda" class="nav-item {% if request.path.startswith('/agenda') %}active{% endif %}">Agenda</a>
+        <a href="/ordenes" class="nav-item {% if request.path.startswith('/ordenes') %}active{% endif %}">Órdenes de Reparación</a>
+        <a href="/clientes" class="nav-item {% if request.path.startswith('/clientes') %}active{% endif %}">Clientes</a>
+        <a href="/inventario" class="nav-item {% if request.path.startswith('/inventario') %}active{% endif %}">Inventario</a>
+        <a href="/facturacion" class="nav-item {% if request.path.startswith('/facturacion') %}active{% endif %}">Facturación</a>
+      </nav>
+    </aside>
+    <div class="main">
+      <header class="topbar">
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+        <input class="search" placeholder="Buscar órdenes, clientes, vehículos...">
+        <div class="user">Juan Pérez<span>Administrador</span><a href="{{ url_for('logout') }}" class="logout-link">Cerrar sesión</a></div>
+      </header>
+      <main class="content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </div>
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
+
+

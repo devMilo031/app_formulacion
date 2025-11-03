@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="actions-bar">
+  <h1 style="margin:0">Facturación</h1>
+  <div class="actions">
+    <a href="/facturas/nueva" class="btn small">+ Nueva Factura</a>
+    <a href="/facturacion/exportar" class="btn small outline">Exportar</a>
+  </div>
+  </div>
+
+<div class="grid grid-4" style="margin-bottom:16px;">
+  <div class="card kpi"><div><div>Total Facturado</div><div class="subtle">Este mes</div></div><div class="value">{{ summary.total }}</div></div>
+  <div class="card kpi"><div><div>Cobrado</div><div class="subtle">facturas</div></div><div class="value">{{ summary.paid }}</div></div>
+  <div class="card kpi"><div><div>Por Cobrar</div><div class="subtle">facturas</div></div><div class="value">{{ summary.due }}</div></div>
+  <div class="card kpi"><div><div>Vencidas</div><div class="subtle">facturas</div></div><div class="value">{{ summary.overdue }}</div></div>
+</div>
+
+<div class="card">
+  <div style="margin-bottom:10px"><input class="search" placeholder="Buscar por número de factura, cliente u orden..."></div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>N° Factura</th><th>N° Orden</th><th>Cliente</th><th>Fecha Emisión</th><th>Fecha Vencimiento</th><th>Subtotal</th><th>IVA (16%)</th><th>Total</th><th>Estado</th><th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for f in invoices %}
+      <tr>
+        <td>{{ f.no }}</td>
+        <td>{{ f.order }}</td>
+        <td>{{ f.client }}</td>
+        <td>{{ f.emit }}</td>
+        <td>{{ f.due }}</td>
+        <td>{{ f.subtotal }}</td>
+        <td>{{ f.vat }}</td>
+        <td>{{ f.total }}</td>
+        <td>
+          {% if f.state == 'Pagada' %}
+          <span class="badge b-green">Pagada</span>
+          {% elif f.state == 'Pendiente' %}
+          <span class="badge b-orange">Pendiente</span>
+          {% elif f.state == 'Vencida' %}
+          <span class="badge b-blue">Vencida</span>
+          {% else %}
+          <span class="badge b-gray">{{ f.state }}</span>
+          {% endif %}
+        </td>
+        <td class="actions"><a class="btn" href="/facturas/{{ f.no }}">Ver</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+
+
